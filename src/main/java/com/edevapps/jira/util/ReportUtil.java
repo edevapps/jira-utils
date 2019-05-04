@@ -29,38 +29,39 @@ import org.dom4j.Element;
 import com.edevapps.util.ReflectionUtil;
 
 public class ReportUtil {
-	
+
 	private static final String ELEMENT_FIELD = "element";
 	private static final String OBJECT_DESCRIPTOR_FIELD = "objectDescriptor";
-	
+
 	private ReportUtil() {
 	}
-	
+
 	public static void reloadReportParameters() {
 		ObjectConfigurationFactory objectConfigurationFactory = ComponentAccessor
 				.getComponent(ObjectConfigurationFactory.class);
 		Collection<Plugin> pluginList = ComponentAccessor.getPluginAccessor().getEnabledPlugins();
-		Collection<ReportModuleDescriptor> reportModuleDescriptors = new ArrayList();
+		Collection<ReportModuleDescriptor> reportModuleDescriptors = new ArrayList<>();
 		for (Plugin plugin : pluginList) {
 			reportModuleDescriptors.addAll(getReportDescriptors(plugin));
 		}
 		for (ReportModuleDescriptor descriptor : reportModuleDescriptors) {
 			try {
 				Element element = ReflectionUtil.getFieldValue(ELEMENT_FIELD, descriptor);
-				ObjectDescriptor objectDescriptor = ReflectionUtil.getFieldValue(OBJECT_DESCRIPTOR_FIELD, descriptor);
+				ObjectDescriptor objectDescriptor = ReflectionUtil
+						.getFieldValue(OBJECT_DESCRIPTOR_FIELD, descriptor);
 				objectConfigurationFactory.loadObjectConfigurationFromElement(element,
 						objectDescriptor, descriptor.getCompleteKey(), descriptor.getPlugin().getClassLoader());
 			}
-			catch (NoSuchFieldException ignore) {
+			catch (NoSuchFieldException e) {
 				// Not supported descriptor
-				ignore.printStackTrace();
+				e.printStackTrace();
 			}
 			catch (Exception e) {
 				throw new IllegalStateException(e);
 			}
 		}
 	}
-	
+
 	private static List<ReportModuleDescriptor> getReportDescriptors(Plugin plugin) {
 		return plugin.getModuleDescriptors().stream()
 				.filter(descriptor -> descriptor instanceof ReportModuleDescriptor)
