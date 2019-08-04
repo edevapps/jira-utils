@@ -46,7 +46,7 @@ public abstract class AbstractJqlIssueQuery implements IssueQuery {
 
 	protected abstract Query getQuery();
 
-	private SearchResults buildSearchResults() throws IllegalStateException, QueryException {
+	private SearchResults<Issue> buildSearchResults() throws IllegalStateException, QueryException {
 		try {
 			return this.searchService.search(this.applicationUser, getQuery(), PagerFilter.getUnlimitedFilter());
 		} catch (SearchException e) {
@@ -56,7 +56,7 @@ public abstract class AbstractJqlIssueQuery implements IssueQuery {
 
 	@Override
 	public List<Issue> execute() {
-		return buildSearchResults().getIssues();
+		return buildSearchResults().getResults();
 	}
 
 	protected String formatDate(Date date) {
