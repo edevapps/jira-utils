@@ -17,7 +17,7 @@
 package com.edevapps.jira.webwork;
 
 import static com.edevapps.util.StringUtil.EMPTY_STRING;
-import static com.twelvemonkeys.lang.StringUtil.isEmpty;
+import static com.edevapps.util.StringUtil.isEmpty;
 
 import com.atlassian.jira.web.action.JiraWebActionSupport;
 
