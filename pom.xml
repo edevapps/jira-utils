@@ -6,7 +6,7 @@
 
   <groupId>com.edevapps.jira</groupId>
   <artifactId>jira-utils</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 
   <properties>
     <jdk.version>1.8</jdk.version>
@@ -14,7 +14,7 @@
     <log4j.version>1.2.17</log4j.version>
     <jira.version>8.0.0</jira.version>
     <amps.version>8.0.0</amps.version>
-    <common-utils.version>1.0.4</common-utils.version>
+    <common-utils.version>1.0.5</common-utils.version>
   </properties>
 
   <dependencies>

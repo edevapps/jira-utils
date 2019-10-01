@@ -14,7 +14,7 @@
  *     limitations under the License.
  */
 
-package com.edevapps.jira.webwork;
+package com.edevapps.jira.web.webwork;
 
 import static com.edevapps.util.StringUtil.EMPTY_STRING;
 import static com.edevapps.util.StringUtil.isEmpty;
