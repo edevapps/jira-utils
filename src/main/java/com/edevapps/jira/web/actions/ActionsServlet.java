@@ -1,8 +1,8 @@
-package com.edevapps.jira.web.servlet;
+package com.edevapps.jira.web.actions;
 
 import static com.edevapps.util.ObjectsUtil.requireNonNull;
 
-import com.edevapps.jira.web.servlet.ActionContext.ActionType;
+import com.edevapps.jira.web.actions.ActionContext.ActionType;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
