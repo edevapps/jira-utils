@@ -17,8 +17,8 @@
 package com.edevapps.jira.query;
 
 import com.atlassian.jira.issue.Issue;
+import com.edevapps.Action;
 import java.util.List;
-import com.edevapps.Strategy;
 
-public interface IssueQuery extends Strategy<List<Issue>> {
+public interface IssueQuery extends Action<List<Issue>> {
 }

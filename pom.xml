@@ -6,17 +6,7 @@
 
   <groupId>com.edevapps.jira</groupId>
   <artifactId>jira-utils</artifactId>
-  <version>1.0.3</version>
-
-  <properties>
-    <jdk.version>1.8</jdk.version>
-    <junit.version>4.12</junit.version>
-    <log4j.version>1.2.17</log4j.version>
-    <jira.version>8.0.0</jira.version>
-    <amps.version>8.0.0</amps.version>
-    <common-utils.version>1.0.5</common-utils.version>
-    <template-renderer.version>2.0.0</template-renderer.version>
-  </properties>
+  <version>1.0.4</version>
 
   <dependencies>
     <dependency>
@@ -30,6 +20,20 @@
       <groupId>com.atlassian.templaterenderer</groupId>
       <artifactId>atlassian-template-renderer-api</artifactId>
       <version>${template-renderer.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.atlassian.upm</groupId>
+      <artifactId>licensing-api</artifactId>
+      <version>${atlassian.upm.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.atlassian.upm</groupId>
+      <artifactId>upm-api</artifactId>
+      <version>${atlassian.upm.version}</version>
       <scope>provided</scope>
     </dependency>
 
@@ -71,4 +75,15 @@
       </plugin>
     </plugins>
   </build>
+
+  <properties>
+    <jdk.version>1.8</jdk.version>
+    <junit.version>4.12</junit.version>
+    <log4j.version>1.2.17</log4j.version>
+    <jira.version>8.0.0</jira.version>
+    <amps.version>8.0.0</amps.version>
+    <common-utils.version>1.0.7</common-utils.version>
+    <template-renderer.version>2.0.0</template-renderer.version>
+    <atlassian.upm.version>2.18.5</atlassian.upm.version>
+  </properties>
 </project>

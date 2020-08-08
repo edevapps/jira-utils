@@ -21,12 +21,12 @@ import com.atlassian.configurable.ObjectDescriptor;
 import com.atlassian.jira.component.ComponentAccessor;
 import com.atlassian.jira.plugin.report.ReportModuleDescriptor;
 import com.atlassian.plugin.Plugin;
+import com.edevapps.util.ReflectionUtil;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.dom4j.Element;
-import com.edevapps.util.ReflectionUtil;
 
 public class ReportUtil {
 
