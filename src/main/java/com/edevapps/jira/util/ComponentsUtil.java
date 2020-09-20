@@ -34,9 +34,7 @@ import com.atlassian.jira.user.ApplicationUser;
 import com.atlassian.jira.user.preferences.ExtendedPreferences;
 import com.atlassian.jira.user.preferences.PreferenceKeys;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ComponentsUtil {
 
