@@ -1,5 +1,5 @@
 /*
- *     Copyright (c) 2018, The Eduard Burenkov (http://edevapps.com)
+ *     Copyright (c) 2020, The Eduard Burenkov (http://edevapps.com)
  *
  *     Licensed under the Apache License, Version 2.0 (the "License");
  *     you may not use this file except in compliance with the License.
@@ -28,8 +28,11 @@ import com.atlassian.jira.component.ComponentAccessor;
 import com.atlassian.jira.config.StatusManager;
 import com.atlassian.jira.config.properties.PropertiesManager;
 import com.atlassian.jira.datetime.DateTimeFormatterFactory;
+import com.atlassian.jira.permission.ProjectPermissions;
+import com.atlassian.jira.project.Project;
 import com.atlassian.jira.project.ProjectManager;
 import com.atlassian.jira.security.PermissionManager;
+import com.atlassian.jira.security.roles.ProjectRoleManager;
 import com.atlassian.jira.user.ApplicationUser;
 import com.atlassian.jira.user.preferences.ExtendedPreferences;
 import com.atlassian.jira.user.preferences.PreferenceKeys;
@@ -95,19 +98,33 @@ public class ComponentsUtil {
 
   public static boolean isLoggedInUserAdministrator() {
     ApplicationUser user = getLoggedInUser();
-    if(user == null) {
+    if (user == null) {
       return false;
     }
     return isUserAdministrator(user);
   }
 
   public static boolean isUserAdministrator(ApplicationUser user) {
-      return ComponentAccessor.getGroupManager()
+    return ComponentAccessor.getGroupManager()
         .isUserInGroup(requireNonNull(user, "user"), JIRA_ADMINISTRATORS_GROUP);
   }
 
+  public static boolean isLoggedInUserProjectAdministrator(Project project) {
+    ApplicationUser user = getLoggedInUser();
+    if (user == null) {
+      return false;
+    }
+    return isUserProjectAdministrator(user, project);
+  }
+
+  public static boolean isUserProjectAdministrator(ApplicationUser user, Project project) {
+    return getPermissionManager()
+        .hasPermission(ProjectPermissions.ADMINISTER_PROJECTS, requireNonNull(project, "project"),
+            requireNonNull(user, "user"));
+  }
+
   public static PermissionManager getPermissionManager() {
-    return ComponentAccessor.getComponent(PermissionManager.class);
+    return ComponentAccessor.getPermissionManager();
   }
 
   public static List<ApplicationUser> findAllUsers() {
@@ -117,5 +134,9 @@ public class ComponentsUtil {
 
   public static GroupPickerSearchService getGroupPickerSearchService() {
     return ComponentAccessor.getComponent(GroupPickerSearchService.class);
+  }
+
+  public static ProjectRoleManager getProjectRoleManager() {
+    return ComponentAccessor.getComponent(ProjectRoleManager.class);
   }
 }

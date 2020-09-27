@@ -6,7 +6,7 @@
 
   <groupId>com.edevapps.jira</groupId>
   <artifactId>jira-utils</artifactId>
-  <version>1.0.5</version>
+  <version>1.0.6</version>
 
   <dependencies>
     <dependency>
@@ -45,6 +45,13 @@
     </dependency>
 
     <dependency>
+      <groupId>org.jetbrains</groupId>
+      <artifactId>annotations</artifactId>
+      <version>18.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
       <groupId>com.edevapps</groupId>
       <artifactId>common-utils</artifactId>
       <version>${common-utils.version}</version>
@@ -53,7 +60,6 @@
   </dependencies>
 
   <build>
-    <finalName>jira-utils</finalName>
     <plugins>
       <!-- Set a JDK compiler level -->
       <plugin>

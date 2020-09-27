@@ -106,16 +106,16 @@ public class ActionResolverImpl implements ActionResolver {
     ActionFactory actionFactory = null;
     if (ActionType.GET.equals(context.getActionType()) && this.getActionFactories
         .containsKey(context.getAction())) {
-      actionFactory = getActionFactories.get(context.getAction());
+      actionFactory = this.getActionFactories.get(context.getAction());
     } else if (ActionType.POST.equals(context.getActionType()) && this.postActionFactories
         .containsKey(context.getAction())) {
-      actionFactory = postActionFactories.get(context.getAction());
+      actionFactory = this.postActionFactories.get(context.getAction());
     } else if (ActionType.PUT.equals(context.getActionType()) && this.putActionFactories
         .containsKey(context.getAction())) {
-      actionFactory = putActionFactories.get(context.getAction());
+      actionFactory = this.putActionFactories.get(context.getAction());
     } else if (ActionType.DELETE.equals(context.getActionType()) && this.deleteActionFactories
         .containsKey(context.getAction())) {
-      actionFactory = deleteActionFactories.get(context.getAction());
+      actionFactory = this.deleteActionFactories.get(context.getAction());
     }
     return actionFactory;
   }
