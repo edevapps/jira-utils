@@ -19,6 +19,7 @@ package com.edevapps.jira.util;
 import static com.atlassian.jira.config.properties.APKeys.JIRA_BASEURL;
 import static com.edevapps.util.ObjectsUtil.requireNonNull;
 
+import com.atlassian.crowd.embedded.api.Group;
 import com.atlassian.jira.bc.group.search.GroupPickerSearchService;
 import com.atlassian.jira.bc.issue.search.SearchService;
 import com.atlassian.jira.bc.security.login.LoginService;
@@ -37,6 +38,7 @@ import com.atlassian.jira.user.ApplicationUser;
 import com.atlassian.jira.user.preferences.ExtendedPreferences;
 import com.atlassian.jira.user.preferences.PreferenceKeys;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ComponentsUtil {
@@ -127,9 +129,29 @@ public class ComponentsUtil {
     return ComponentAccessor.getPermissionManager();
   }
 
+  public static ApplicationUser findUser(String value) {
+    return findUsers(value).stream().findFirst().orElse(null);
+  }
+
+  public static List<ApplicationUser> findUsers(String value) {
+    return Collections.unmodifiableList(new ArrayList<>(ComponentAccessor.getUserSearchService()
+        .findUsers(value, new UserSearchParams(false, true, false))));
+  }
+
+  public static ApplicationUser findUserByKey(final String userKey) {
+    return findAllUsers().stream()
+        .filter(applicationUser -> applicationUser.getKey().equals(userKey)).findFirst()
+        .orElse(null);
+  }
+
   public static List<ApplicationUser> findAllUsers() {
-    return new ArrayList<>(ComponentAccessor.getUserSearchService()
-        .findUsers("", new UserSearchParams(true, true, false)));
+    return Collections.unmodifiableList(new ArrayList<>(ComponentAccessor.getUserSearchService()
+        .findUsers("", new UserSearchParams(true, true, false))));
+  }
+
+  public static List<Group> findAllGroups() {
+    return Collections
+        .unmodifiableList(new ArrayList<>(getGroupPickerSearchService().findGroups("")));
   }
 
   public static GroupPickerSearchService getGroupPickerSearchService() {
