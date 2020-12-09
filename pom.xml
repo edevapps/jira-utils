@@ -95,6 +95,6 @@
     <amps.version>8.0.0</amps.version>
     <template-renderer.version>2.0.0</template-renderer.version>
     <atlassian.upm.version>2.18.5</atlassian.upm.version>
-    <common-utils.version>1.0.9</common-utils.version>
+    <common-utils.version>1.0.10</common-utils.version>
   </properties>
 </project>
